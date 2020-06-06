@@ -7,6 +7,7 @@ public interface KitchensService {
 	  void save(Kitchens kitchens);
 
 	    Kitchens findByUsername(String kitchen_name);
+	    Kitchens findById(long id);
 
 }
 

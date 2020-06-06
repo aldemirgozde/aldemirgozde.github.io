@@ -13,7 +13,7 @@ import com.group6.pro.service.SecurityService;
 import com.group6.pro.service.UserService;
 import com.group6.pro.validator.UserValidator;
 
-@Controller
+@RestController
 public class UserController {
     @Autowired
     private UserService userService;
@@ -82,5 +82,10 @@ public class UserController {
         kitchen.setKitchen_stop_time(end);
     	kitchensService.save(kitchen);
         return "redirect:/welcome";
+    }
+    
+    @GetMapping("/getKitchen/{id}")
+    public Kitchens getKitchenById(@PathVariable long id) {
+        return kitchensService.findById(id);
     }
 }

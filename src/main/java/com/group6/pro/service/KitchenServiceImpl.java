@@ -20,7 +20,7 @@ public class KitchenServiceImpl implements KitchensService {
 
     @Override
     public void save(Kitchens kitchens) 
-    {System.out.println("TEST");
+    {
     	kitchenRepository.save(kitchens);
     }
 
@@ -30,6 +30,7 @@ public class KitchenServiceImpl implements KitchensService {
 		return kitchenRepository.findByKitchenName(kitchen_name);
 	}
 	
+	@Override
 	public Kitchens findById(long id)
 	{
 		return kitchenRepository.getOne(id);
