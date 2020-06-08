@@ -1,20 +1,33 @@
 package com.group6.pro.web;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.group6.pro.model.Kitchens;
 import com.group6.pro.model.User;
+import com.group6.pro.repository.KitchensRepository;
+import com.group6.pro.service.KitchenServiceImpl;
 import com.group6.pro.service.KitchensService;
 import com.group6.pro.service.SecurityService;
 import com.group6.pro.service.UserService;
 import com.group6.pro.validator.UserValidator;
 
-@RestController
+@Controller
 public class UserController {
+	
+	@Autowired 
+	private  KitchenServiceImpl kitchenservice;
+	
+	@Autowired
+	private KitchensRepository kitchenrepo;
+	
     @Autowired
     private UserService userService;
 
@@ -61,16 +74,42 @@ public class UserController {
     }
 
     @GetMapping({"/", "/welcome"})
-    public String welcome(Model model) {
+    public String welcome(ModelMap modelMap) {
     	System.out.println("DONE");
+//    	List<Kitchens> AllKitchens = kitchenrepo.findAll();
+//    	modelMap.put("KitchenList", kitchenrepo.findAll());
+    	
         return "welcome";
     }
     
-    @GetMapping("/addKitchen")
-    public String addKitchenGet(Kitchens kitchens) {
-        System.out.println("ERR");
-    	return "RANDOM ERROR PAGE";
+    @GetMapping("/welcome/kitchenListing")
+    public String kitchenList(ModelMap modelMap) {
+    	System.out.println("DONE");
+//    	List<Kitchens> AllKitchens = kitchenrepo.findAll();
+    	modelMap.put("KitchenList", kitchenrepo.findAll());
+    	
+        return "kitchenlist";
     }
+    
+    @RequestMapping("/welcome/kitchenListing/{kitchenId}")
+    public String KitchenOrderPage(@PathVariable(name = "kitchenId") String kitchen_name, Model model) {
+//        ModelAndView mav = new ModelAndView("edit_product");
+        Kitchens kitchen = kitchensService.findByUsername(kitchen_name);
+//        mav.addObject("kitchen", kitchen);
+        model.addAttribute("kitchen", kitchen);     
+        return "kitchen";
+    }
+    
+    
+    
+    @GetMapping("/addKitchen")
+    public String addKitchenGet(Model model) {
+        model.addAttribute("kitchens", new Kitchens());
+        
+        return "addKitchen";
+    }
+    
+      
 
     @PostMapping("/addKitchen")
     public @ResponseBody String addKitchenPost(@RequestParam String name, @RequestParam String days, @RequestParam String start, @RequestParam String end) {
@@ -82,10 +121,5 @@ public class UserController {
         kitchen.setKitchen_stop_time(end);
     	kitchensService.save(kitchen);
         return "redirect:/welcome";
-    }
-    
-    @GetMapping("/getKitchen/{id}")
-    public Kitchens getKitchenById(@PathVariable long id) {
-        return kitchensService.findById(id);
     }
 }

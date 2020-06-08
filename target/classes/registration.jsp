@@ -10,6 +10,11 @@
       <title>Create an account</title>
 
       <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
+      <link href="${contextPath}/resources/css/bootstrap.css" rel="stylesheet">
+      <link href="${contextPath}/resources/css/bootstrap-grid.css" rel="stylesheet">
+      <link href="${contextPath}/resources/css/bootstrap-grid.min.css" rel="stylesheet">
+      <link href="${contextPath}/resources/css/bootstrap-reboot.css" rel="stylesheet">
+      <link href="${contextPath}/resources/css/bootstrap-reboot.min.css" rel="stylesheet">
       <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
   </head>
 

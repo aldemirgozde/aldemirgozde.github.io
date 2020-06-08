@@ -8,6 +8,6 @@
 <title>Menu</title>
 </head>
 <body>
-    Name: <% KitchenServiceImpl temp = new KitchenServiceImpl(); temp.findById(1).getName();%>
+   
 </body>
 </html>

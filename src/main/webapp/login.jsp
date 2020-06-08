@@ -11,14 +11,19 @@
       <title>Log in with your account</title>
 
       <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
+      <link href="${contextPath}/resources/css/bootstrap.css" rel="stylesheet">
+      <link href="${contextPath}/resources/css/bootstrap-grid.css" rel="stylesheet">
+      <link href="${contextPath}/resources/css/bootstrap-grid.min.css" rel="stylesheet">
+      <link href="${contextPath}/resources/css/bootstrap-reboot.css" rel="stylesheet">
+      <link href="${contextPath}/resources/css/bootstrap-reboot.min.css" rel="stylesheet">
       <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
   </head>
 
   <body>
 
-    <div class="container">
+
       <form method="POST" action="${contextPath}/login" class="form-signin">
-        <h2 class="form-heading">Log in</h2>
+        <h2 class="form-heading">Login to Feast Freedom</h2>
 
         <div class="form-group ${error != null ? 'has-error' : ''}">
             <span>${message}</span>
@@ -29,12 +34,17 @@
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
             <button class="btn btn-lg btn-primary btn-block" type="submit">Log In</button>
-            <h4 class="text-center"><a href="${contextPath}/registration">Create an account</a></h4>
+            <h4 class="text-center">New User?<a href="${contextPath}/registration">Create an account</a></h4>
         </div>
       </form>
-    </div>
+    
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="${contextPath}/resources/js/bootstrap.min.js"></script>
+    <script src="${contextPath}/resources/js/bootstrap.bundle.js"></script>
+        <script src="${contextPath}/resources/js/bootstrap.bundle.min.js"></script>
+            <script src="${contextPath}/resources/js/bootstrap.js"></script>
   </body>
 </html>
